@@ -1,5 +1,6 @@
 {
   "name": "react-fakestore",
+  "homepage": "https://gnomeshift.github.io/react-fakestore/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
