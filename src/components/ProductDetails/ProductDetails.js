@@ -5,6 +5,7 @@ import Rating from '../Rating/Rating';
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [rating, setRating] = useState(0);
     const navigation = useNavigate();
     const url = `https://fakestoreapi.com/products/${id}`;
 
@@ -14,6 +15,7 @@ const ProductDetails = () => {
                 const response = await fetch(url);
                 const data = await response.json();
                 setProduct(data);
+                setRating(Math.round(data.rating.rate));
             }
             catch (error) {
                 console.error('Не удалось загрузить товар: ', error);
@@ -33,7 +35,7 @@ const ProductDetails = () => {
             <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: 'auto' }} />
             <p>Цена: {product.price}$</p>
             <p>Описание: {product.description}</p>
-            <Rating rating={product.rating.rate} />
+            <Rating rating={rating} onChange={setRating} />
             <button onClick={() => navigation(-1)}>Назад</button>
         </div>
     )
